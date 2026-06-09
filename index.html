@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanda Flowers Boutique by A&G — Bayswater, London</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #faf8f4;
+      --cream2:  #f3efe8;
+      --green:   #5a7a5e;
+      --green2:  #7a9e7e;
+      --green3:  #e8f0e9;
+      --dark:    #2c2c2c;
+      --mid:     #6b6b6b;
+      --light:   #a8a8a8;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ──────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 248, 244, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(90, 122, 94, 0.12);
+      padding: 0 5%;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--green); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    .btn-order {
+      display: inline-block;
+      padding: 0.55rem 1.4rem;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .btn-order:hover { background: #4a6a4e; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--dark);
+      transition: all 0.3s;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 64px 0 0 0;
+      background: var(--cream);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .mobile-menu a:hover { color: var(--green); }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    #hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 5%;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-text { z-index: 1; }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--dark);
+      margin-bottom: 1.4rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--mid);
+      max-width: 380px;
+      margin-bottom: 2.4rem;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.55rem 1.4rem;
+      border: 1px solid var(--green);
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: var(--green); color: #fff; }
+
+    .hero-image {
+      position: relative;
+      height: 560px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.95) saturate(0.9);
+    }
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(90,122,94,0.08) 0%, transparent 60%);
+    }
+
+    /* decorative line */
+    .hero-line {
+      position: absolute;
+      left: 5%;
+      bottom: 8%;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--light);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── SECTION BASE ─────────────────────────────────── */
+    section { padding: 100px 5%; }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .section-title em { font-style: italic; color: var(--green); }
+
+    .section-sub {
+      color: var(--mid);
+      max-width: 520px;
+      font-size: 0.93rem;
+      line-height: 1.75;
+    }
+
+    /* ─── HOW TO ORDER ─────────────────────────────────── */
+    #how-to-order { background: var(--cream2); }
+
+    .order-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .order-step { position: relative; }
+
+    .step-number {
+      font-family: var(--serif);
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(90, 122, 94, 0.15);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .step-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    .step-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--green3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .step-icon svg { width: 20px; height: 20px; stroke: var(--green); fill: none; stroke-width: 1.5; }
+
+    /* ─── WHAT WE MAKE ─────────────────────────────────── */
+    #what-we-make { background: var(--cream); }
+
+    .offerings-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .offering-card {
+      background: var(--cream2);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .offering-card:hover { transform: translateY(-4px); }
+
+    .offering-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      filter: saturate(0.85) brightness(0.97);
+    }
+
+    .offering-body { padding: 1.4rem; }
+
+    .offering-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .offering-desc {
+      font-size: 0.82rem;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    /* ─── GALLERY ──────────────────────────────────────── */
+    #gallery { background: var(--cream2); }
+
+    .gallery-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .instagram-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--green2);
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .instagram-link:hover { color: #4a6a4e; }
+
+    /* Instagram embed wrapper */
+    .instagram-embed-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .instagram-embed-wrapper blockquote.instagram-media {
+      flex: 1 1 300px;
+      max-width: 400px;
+    }
+
+    /* ─── REVIEWS ──────────────────────────────────────── */
+    #reviews { background: var(--cream); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .review-card {
+      background: var(--cream2);
+      border-radius: 4px;
+      padding: 2rem;
+      position: relative;
+      border-left: 3px solid var(--green2);
+    }
+
+    .review-stars {
+      color: var(--green);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .review-text {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--dark);
+      margin-bottom: 1.2rem;
+    }
+
+    .review-author {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .review-quote {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.8rem;
+      font-family: var(--serif);
+      font-size: 4rem;
+      color: rgba(90,122,94,0.1);
+      line-height: 1;
+      font-style: italic;
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.7);
+      padding: 70px 5% 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .footer-logo span { color: var(--green2); }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      max-width: 260px;
+    }
+
+    .footer-heading {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-link {
+      display: block;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.88rem;
+      margin-bottom: 0.65rem;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--green2); }
+
+    .footer-map {
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* ─── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 900px) {
+      #hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        gap: 2.5rem;
+      }
+      .hero-image { height: 380px; }
+      .hero-line { display: none; }
+
+      .order-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .offerings-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 72px 5%; }
+
+      .nav-links { display: none; }
+      .btn-order.nav-btn { display: none; }
+      .hamburger { display: flex; }
+
+      .offerings-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─────────────────────────────────────────── -->
+  <nav>
+    <a href="#hero" class="nav-logo">Vanda <span>&</span> G</a>
+
+    <ul class="nav-links">
+      <li><a href="#gallery">Our work</a></li>
+      <li><a href="#how-to-order">How to order</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+    </ul>
+
+    <a href="mailto:vanda.flowers@icloud.com" class="btn-order nav-btn">Order now</a>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#gallery"       onclick="closeMenu()">Our work</a>
+    <a href="#how-to-order"  onclick="closeMenu()">How to order</a>
+    <a href="#reviews"       onclick="closeMenu()">Reviews</a>
+    <a href="mailto:vanda.flowers@icloud.com" class="btn-order" style="font-size:0.9rem;padding:0.8rem 2rem;">Order now</a>
+  </div>
+
+  <!-- ─── HERO ─────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Bayswater, London</p>
+      <h1 class="hero-title">
+        Handcrafted<br/>
+        <em>floral art,</em><br/>
+        Bayswater
+      </h1>
+      <p class="hero-sub">
+        Seasonal blooms. Personal touches. Made with care by Anda &amp; G for every occasion — intimate or grand.
+      </p>
+      <div class="hero-buttons">
+        <a href="mailto:vanda.flowers@icloud.com" class="btn-order">Order now</a>
+        <a href="https://instagram.com/vanda_flowers_boutique_by_ag" target="_blank" rel="noopener" class="btn-outline">See our work</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img
+        src="https://images.unsplash.com/photo-1487530811015-780c4a7c297d?w=900&q=80&auto=format&fit=crop"
+        alt="Beautiful floral arrangement"
+        loading="eager"
+      />
+    </div>
+
+    <p class="hero-line">115b Queensway, Bayswater &nbsp;·&nbsp; London</p>
+  </section>
+
+  <!-- ─── HOW TO ORDER ─────────────────────────────────── -->
+  <section id="how-to-order">
+    <p class="section-label">Simple process</p>
+    <h2 class="section-title">How to <em>order</em></h2>
+    <p class="section-sub">Three easy steps — and your perfect bouquet is on its way.</p>
+
+    <div class="order-grid">
+      <div class="order-step">
+        <div class="step-number">01</div>
+        <div class="step-icon">
+          <!-- envelope icon -->
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        </div>
+        <h3 class="step-title">Message us</h3>
+        <p class="step-desc">Drop us an email at <a href="mailto:vanda.flowers@icloud.com" style="color:var(--green);text-decoration:none;">vanda.flowers@icloud.com</a> or DM us on Instagram. We reply fast.</p>
+      </div>
+
+      <div class="order-step">
+        <div class="step-number">02</div>
+        <div class="step-icon">
+          <!-- sparkle / notes icon -->
+          <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
+        </div>
+        <h3 class="step-title">Tell us your occasion &amp; budget</h3>
+        <p class="step-desc">Birthday, wedding, corporate — any occasion works. Share your vision and budget, and we'll make it happen.</p>
+      </div>
+
+      <div class="order-step">
+        <div class="step-number">03</div>
+        <div class="step-icon">
+          <!-- box / delivery icon -->
+          <svg viewBox="0 0 24 24"><path d="M5 8h14M5 8a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v1a2 2 0 01-2 2"/><path d="M5 8v11a2 2 0 002 2h10a2 2 0 002-2V8"/><path d="M10 12h4"/></svg>
+        </div>
+        <h3 class="step-title">Pick up or we deliver</h3>
+        <p class="step-desc">Collect from our boutique at 115b Queensway, or we'll bring your arrangement straight to the door.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHAT WE MAKE ──────────────────────────────────── -->
+  <section id="what-we-make">
+    <p class="section-label">Our specialties</p>
+    <h2 class="section-title">What we <em>make</em></h2>
+
+    <div class="offerings-grid">
+
+      <div class="offering-card">
+        <img class="offering-img"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75&auto=format&fit=crop"
+          alt="Vanda Orchids" loading="lazy" />
+        <div class="offering-body">
+          <h3 class="offering-title">Vanda Orchids</h3>
+          <p class="offering-desc">Rare, dramatic, long-lasting. Our signature orchids make an unforgettable statement.</p>
+        </div>
+      </div>
+
+      <div class="offering-card">
+        <img class="offering-img"
+          src="https://images.unsplash.com/photo-1523693916630-43e39ff6e3a4?w=600&q=75&auto=format&fit=crop"
+          alt="Seasonal Bouquets" loading="lazy" />
+        <div class="offering-body">
+          <h3 class="offering-title">Seasonal Bouquets</h3>
+          <p class="offering-desc">Curated around what's blooming — fresh, sustainable, and alive with colour.</p>
+        </div>
+      </div>
+
+      <div class="offering-card">
+        <img class="offering-img"
+          src="https://images.unsplash.com/photo-1490750967868-88df5691cc81?w=600&q=75&auto=format&fit=crop"
+          alt="Last-minute Orders" loading="lazy" />
+        <div class="offering-body">
+          <h3 class="offering-title">Last-minute Orders</h3>
+          <p class="offering-desc">Forgot? No problem. We specialise in beautiful same-day arrangements — message us.</p>
+        </div>
+      </div>
+
+      <div class="offering-card">
+        <img class="offering-img"
+          src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=600&q=75&auto=format&fit=crop"
+          alt="Corporate Flowers" loading="lazy" />
+        <div class="offering-body">
+          <h3 class="offering-title">Corporate Flowers</h3>
+          <p class="offering-desc">Recurring office arrangements, event centrepieces, and branded installations for businesses.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── GALLERY ───────────────────────────────────────── -->
+  <section id="gallery">
+    <div class="gallery-header">
+      <div>
+        <p class="section-label">Instagram</p>
+        <h2 class="section-title">Our <em>work</em></h2>
+      </div>
+      <a href="https://instagram.com/vanda_flowers_boutique_by_ag" target="_blank" rel="noopener" class="instagram-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+        @vanda_flowers_boutique_by_ag
+      </a>
+    </div>
+
+    <!-- Instagram embed -->
+    <div class="instagram-embed-wrapper">
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/vanda_flowers_boutique_by_ag/"
+        data-instgrm-version="14"
+        style="background:#fff;border:0;border-radius:4px;box-shadow:0 0 1px 0 rgba(0,0,0,.2),0 1px 10px 0 rgba(0,0,0,.1);margin:0;min-width:326px;padding:0;width:calc(100% - 2px);">
+      </blockquote>
+    </div>
+    <script async src="//www.instagram.com/embed.js"></script>
+
+  </section>
+
+  <!-- ─── REVIEWS ───────────────────────────────────────── -->
+  <section id="reviews">
+    <p class="section-label">What clients say</p>
+    <h2 class="section-title">Their <em>words</em></h2>
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Stunning, fresh, and made with so much care and creativity. You can really feel the passion behind every bouquet."</p>
+        <p class="review-author">— Raluca M.</p>
+        <span class="review-quote">"</span>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Heartwarming vibe and superb quality!"</p>
+        <p class="review-author">— Ricardo N.</p>
+        <span class="review-quote">"</span>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Exquisite arrangements. Thank you Anda for such an easy collaboration."</p>
+        <p class="review-author">— Ioana P.</p>
+        <span class="review-quote">"</span>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The best in the area. Elegance with creativity in every bouquet."</p>
+        <p class="review-author">— Maissam A.</p>
+        <span class="review-quote">"</span>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:3.5rem;">
+      <a href="mailto:vanda.flowers@icloud.com" class="btn-order" style="font-size:0.82rem;padding:0.75rem 2rem;">
+        Order your arrangement
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-grid">
+
+      <div>
+        <p class="footer-logo">Vanda Flowers <span>by A&amp;G</span></p>
+        <p class="footer-tagline">Handcrafted floral art from our boutique in the heart of Bayswater, London.</p>
+        <a href="mailto:vanda.flowers@icloud.com" class="btn-order" style="font-size:0.75rem;">Order now</a>
+      </div>
+
+      <div>
+        <p class="footer-heading">Contact</p>
+        <a href="mailto:vanda.flowers@icloud.com" class="footer-link">vanda.flowers@icloud.com</a>
+        <a href="https://instagram.com/vanda_flowers_boutique_by_ag" target="_blank" rel="noopener" class="footer-link">@vanda_flowers_boutique_by_ag</a>
+
+        <p class="footer-heading" style="margin-top:2rem;">Find us</p>
+        <p class="footer-link" style="cursor:default;">115b Queensway</p>
+        <p class="footer-link" style="cursor:default;">Bayswater, London</p>
+      </div>
+
+      <div>
+        <p class="footer-heading">Location</p>
+        <div class="footer-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.01!2d-0.1899!3d51.5131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487605fbcc8ec02d%3A0xd180056ea85503ad!2sVanda%20Flowers%20Boutique%20by%20A%26G!5e0!3m2!1sen!2suk!4v1"
+            width="100%"
+            height="180"
+            style="border:0;display:block;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2024 Vanda Flowers Boutique by A&amp;G — All rights reserved</span>
+      <span style="color:rgba(255,255,255,0.3);">115b Queensway, Bayswater, London</span>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+    }
+
+    // Smooth scroll offset for sticky nav
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        const offset = 70;
+        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+</html>
